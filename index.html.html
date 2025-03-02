@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sound of Life</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+        body {
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            transition: background 0.5s ease-in-out;
+            overflow: hidden; /* Prevent scrolling */
+            background: url('home-background.jpg') no-repeat center center/cover;
+            color: white;
+            position: relative;
+            height: 100vh;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.9);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            padding: 12px;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+        .navbar a:hover {
+            color: yellow;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .container {
+            display: none;
+            position: absolute;
+            top: 50px; /* Adjusted so it appears below the navbar */
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 90%;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .active {
+            display: block;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background: black;
+            color: white;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .falling-logo {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            animation: fall 5s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body onload="initializePage()">
+
+    <div class="navbar">
+        <div>
+            <a href="#" onclick="changePage('home')">Home</a>
+            <a href="#" onclick="changePage('games')">Games</a>
+            <a href="#" onclick="changePage('music')">Music</a>
+            <a href="#" onclick="changePage('tech')">Tech</a>
+            <a href="#" onclick="changePage('contact')">Contact</a>
+            <a href="#" onclick="changePage('policy')">Policy</a>
+        </div>
+    </div>
+
+    <div id="home" class="container active">
+        <h1>About Me</h1>
+        <p>I am Ryan, a passionate coder, gamer, and tech enthusiast...</p>
+    </div>
+
+    <div id="games" class="container">
+        <h1>Gaming World</h1>
+        <p>Gaming is not just about entertainment—it's about strategy, creativity...</p>
+    </div>
+
+    <div id="music" class="container">
+        <h1>The Sound of Music</h1>
+        <p>Music has been a part of human history for thousands of years...</p>
+    </div>
+
+    <div id="tech" class="container">
+        <h1>Tech Innovations</h1>
+        <p>The world of technology is advancing rapidly...</p>
+    </div>
+    
+    <div id="contact" class="container">
+        <h1>Contact Me</h1>
+        <p>Email: ryan@example.com</p>
+        <p>Instagram: <a href="https://www.instagram.com/mymusicalchild/" target="_blank">mymusicalchild</a></p>
+    </div>
+
+    <div id="policy" class="container">
+        <h1>Privacy Policy</h1>
+        <p>This website does not collect personal data from visitors...</p>
+    </div>
+
+    <div class="footer">
+        Copyright © 2024 Ryan - All Rights Reserved.
+    </div>
+
+    <script>
+        function initializePage() {
+            document.querySelector('#home').classList.add('active');
+            addFallingElements('home');
+        }
+
+        function changePage(section) {
+            document.querySelectorAll('.container').forEach(el => el.classList.remove('active'));
+            document.querySelector(`#${section}`).classList.add('active');
+
+            let images = {
+                'home': 'file:///C:/Users/ZAKI/Downloads/DALL%C2%B7E%202025-02-28%2007.05.51%20-%20A%20stunning%20fantasy-themed%20landscape%20desktop%20wallpaper%20with%20the%20word%20'Home'%20centered.%20The%20background%20features%20a%20dreamy,%20mystical%20world%20with%20glowing%20ele.webp',
+                'games': 'file:///C:/Users/ZAKI/Downloads/DALL%C2%B7E%202025-02-28%2006.54.01%20-%20A%20breathtaking%20landscape%20desktop%20background%20with%20a%20gaming%20theme.%20The%20scene%20features%20neon%20lighting%20effects%20and%20an%20electrifying%20atmosphere.%20Floating,%20br.webp',
+                'music': 'file:///C:/Users/ZAKI/Downloads/DALL%C2%B7E%202025-02-28%2006.50.54%20-%20A%20stunning%20landscape%20desktop%20background%20featuring%20a%20floating%20music%20logo.%20The%20logo%20is%20glowing%20with%20deep%20blue,%20pink,%20purple,%20black,%20and%20red%20colors,%20crea.webp',
+                'tech': 'file:///C:/Users/ZAKI/Downloads/DALL%C2%B7E%202025-02-28%2006.58.55%20-%20A%20stunning%20landscape%20desktop%20background%20with%20a%20technology%20theme.%20The%20scene%20features%20neon%20lighting%20effects,%20futuristic%20circuits,%20and%20an%20electrifying%20di.webp',
+                'contact': 'https://i.pinimg.com/736x/3c/27/7f/3c277f98d1acbeeb84cbd024bd37c2bb.jpg',
+                'policy': 'https://i.pinimg.com/736x/d0/bc/c0/d0bcc03358f235c1d7e435689b358057.jpg'
+            };
+            document.body.style.background = `url('${images[section]}') no-repeat center center/cover`;
+
+            addFallingElements(section);
+        }
+
+        function addFallingElements(section) {
+            document.querySelectorAll('.falling-logo').forEach(el => el.remove());
+
+            let icons = {
+                'games': 'https://i.pinimg.com/736x/d4/e7/fb/d4e7fbe4aeca384d1d2761d8c1099bed.jpg',
+                'music': 'file:///C:/Users/ZAKI/Downloads/Download%20premium%20psd%20_%20image%20of%20Music%20note%20icon%20pink%20psd%20for%20social%20media%20app%20neon%20style%20by%20Ning%20about%20music%20note,%20neon,%20design,%20music%20icon,%20and%20icon%202873618.jpg',
+                'tech': 'file:///C:/Users/ZAKI/Downloads/Modern%20Orbit%20Tech%20Connection%20Logo.jpg',
+                'home': 'https://i.pinimg.com/736x/0d/42/c5/0d42c51c82fca7b2a1360ffec4747b2a.jpg',
+                'contact': 'file:///C:/Users/ZAKI/Downloads/Download%20premium%20vector%20of%20Phone%20neon%20pink%20icon%20vector%20for%20social%20media%20app%20by%20Ning%20about%20neon%20app%20icons,%20phone%20icon%20neon,%20phone,%20neon%20social%20media%20icon,%20and%20pink%20neon%20telephone%203011135.jpg',
+                'policy': 'file:///C:/Users/ZAKI/Downloads/Download%20free%20image%20of%20Shield%20cyber%20security%20icon%20purple%20light%20armor_%20by%20Ratcharin%20Noiruksa%20about%20aesthetic,%20light,%20pattern,%20neon,%20and%20circle%2014583907.jpg'
+            };
+            
+            for (let i = 0; i < 10; i++) {
+                let img = document.createElement('img');
+                img.classList.add('falling-logo');
+                img.src = icons[section] || '';
+                img.style.left = Math.random() * 100 + 'vw';
+                img.style.top = '-50px';  /* Logos start above the screen */
+                img.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.body.appendChild(img);
+            }
+        }
+    </script>
+
+</body>
+</html>
